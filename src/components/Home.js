@@ -11,14 +11,6 @@ function Home() {
     const getAllMovies = () => {
 
         const serverURL = `https://movie-app-1-orhl.onrender.com`;
-        // fetch(serverURL)
-        //     .then(response => {
-        //         response.json().then(data => {
-        //             // console.log(data);
-        //             setMoviesData(data);
-        //         })
-        //     })
-
         axios.get(serverURL)
             .then(response => {
                 // console.log(response.data)
