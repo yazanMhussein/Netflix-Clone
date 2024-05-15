@@ -7,13 +7,12 @@ function Home() {
 
     const [moviesData, setMoviesData] = useState([])
 
-
     const getAllMovies = () => {
 
-        const serverURL = `https://movie-app-1-orhl.onrender.com`;
+        const serverURL = `http://localhost:3002/trending`;
+
         axios.get(serverURL)
             .then(response => {
-                // console.log(response.data)
                 setMoviesData(response.data);
             })
             .catch((error) => {
