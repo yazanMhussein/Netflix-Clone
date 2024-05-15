@@ -10,7 +10,7 @@ function Home() {
 
     const getAllMovies = () => {
 
-        const serverURL = `http://localhost:3002/trending`;
+        const serverURL = `https://movie-app-1-orhl.onrender.com`;
         // fetch(serverURL)
         //     .then(response => {
         //         response.json().then(data => {
