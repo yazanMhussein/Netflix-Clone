@@ -26,8 +26,8 @@ function MovieList({ moviesData, isFavPage }) {
 
     const getAllFavMovies = () => {
 
-        const serverURL = `http://localhost:3002/getMovies`;
 
+        const serverURL = `${process.env.REACT_APP_serverURL}/getMovies`;
 
         axios.get(serverURL)
             .then(response => {
@@ -46,8 +46,9 @@ function MovieList({ moviesData, isFavPage }) {
 
     // for delete
     const deleteItem = (item) => {
-        let url = `http://localhost:3002/DELETE/${item.id}`
-        console.log(url);
+
+        let url = `${process.env.REACT_APP_serverURL}/DELETE/${item.id}`; 
+      console.log(url);
         axios.delete(url)
             .then(response => {
                 console.log(response.data);
@@ -70,16 +71,25 @@ function MovieList({ moviesData, isFavPage }) {
 
 
 
+
+    const updateFavoriteMovies = (data) => {
+        setMoviesFavorite(data);
+    }
+
+
     return (
         <>
             {
                 isFavPage && <Row>
-                    {moviesFavorite.map(item => (
+
+                    {moviesFavorite?.map(item => (
                         <Col key={item.id}>
                             <Movie item={item} showModal={showModal} isFavPage={isFavPage} deleteItem={deleteItem} updateItem={updateItem} />
                         </Col>
                     ))}
-                    <ModalMovie show={show} handleClose={handleClose} clickedMovie={clickedMovie} isFavPage={isFavPage} updateFavoriteMovies={setMoviesFavorite} />
+
+                    <ModalMovie show={show} handleClose={handleClose} clickedMovie={clickedMovie} isFavPage={isFavPage} updateFavoriteMovies={updateFavoriteMovies} />
+
                 </Row>
             }
             {
@@ -92,7 +102,6 @@ function MovieList({ moviesData, isFavPage }) {
                     <ModalMovie show={show} handleClose={handleClose} clickedMovie={clickedMovie} />
                 </Row>
             }
-
 
         </>
 
