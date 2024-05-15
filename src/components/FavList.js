@@ -1,4 +1,3 @@
-
 import MovieList from "./MovieList";
 
 

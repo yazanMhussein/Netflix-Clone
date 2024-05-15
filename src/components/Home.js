@@ -1,18 +1,19 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import MovieList from './MovieList';
-
+import axios from "axios";
+import MovieList from "./MovieList";
+import { useState, useEffect } from "react";
 
 function Home() {
 
-    const [moviesData, setMoviesData] = useState([])
+
+    const [moviesData, setMoviesData] = useState([]);
 
     const getAllMovies = () => {
 
-        const serverURL = `http://localhost:3002/trending`;
+        const serverURL = `${process.env.REACT_APP_serverURL}/trending`;
 
         axios.get(serverURL)
             .then(response => {
+                // console.log(response.data);
                 setMoviesData(response.data);
             })
             .catch((error) => {
@@ -22,7 +23,7 @@ function Home() {
 
     useEffect(() => {
         getAllMovies();
-    }, [])
+    }, []);
 
     return (
         <>
